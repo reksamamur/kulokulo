@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 import Container from "react-bootstrap/Container";
-import { Row, Col, Button, Image, Nav } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import Appbar from "../components/Appbar";
-import Form from "react-bootstrap/Form";
 
 import { indexdb } from "../data/cart";
 
@@ -26,7 +25,11 @@ function Cart() {
 
 const CartActivity = () => {
   const cart = Cart();
-  // console.log("susumbk", cart);
+
+  const handleOrder = () => {
+    indexdb.table("cart").clear();
+    window.location.replace('/');
+  }
 
   const viewDataOn = () => {
     return (
@@ -77,7 +80,7 @@ const CartActivity = () => {
       <Container>
         <div className="displayin">
           <h4 className="parag mt-4">Total Rp. {total}K</h4>
-          <button type="button" class="btn mb-2 btn-primary-cus btn-sm btn-block">
+          <button type="button" class="btn mb-2 btn-primary-cus btn-sm btn-block" onClick={handleOrder}>
             Order
           </button>
         </div>
